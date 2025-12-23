@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNIIMIZE | Education Growth Systems</title>
 
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22%23C5A028%22>U</text></svg>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +83,9 @@
 
         html {
             font-size: 16px;
+            overflow-x: hidden;
+            /* Fix horizontal scroll */
+            width: 100%;
         }
 
         body {
@@ -86,6 +93,8 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
+            /* Fix horizontal scroll */
+            width: 100%;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
@@ -124,6 +133,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 4%;
+            width: 100%;
+            /* Ensure container respects width */
         }
 
         a {
@@ -166,22 +177,15 @@
             }
         }
 
-        /* Floating Pill Navigation (Desktop Default) */
-        nav {
+        /* --- DESKTOP NAVIGATION (PILL) --- */
+        nav.desktop-nav {
             position: fixed;
-            bottom: 40px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             width: auto;
             transition: 0.5s;
-        }
-
-        @media (min-width: 768px) {
-            nav {
-                top: 30px;
-                bottom: auto;
-            }
         }
 
         .nav-pill {
@@ -246,10 +250,98 @@
             box-shadow: 0 0 20px rgba(197, 160, 40, 0.4);
         }
 
+        /* --- MOBILE NAVIGATION (HAMBURGER) --- */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 24px;
+            z-index: 2000;
+            /* Blur Effect Added */
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 22px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .hamburger-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger-line:nth-child(2) {
+            width: 70%;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050505;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            transform: translateY(-100%);
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .mobile-menu-overlay.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu-link {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .mobile-menu-link.active,
+        .mobile-menu-link:hover {
+            color: #fff;
+            transform: scale(1.05);
+        }
+
         /* Common Section Styling */
         section {
             padding: 140px 0;
             position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* Prevent overflow */
         }
 
         .section-header {
@@ -348,6 +440,7 @@
             border-bottom: 1px solid var(--border);
             overflow: hidden;
             background: #080808;
+            width: 100%;
         }
 
         .marquee-content {
@@ -604,6 +697,8 @@
             margin-bottom: 80px;
             color: var(--text-main);
             transition: 0.3s;
+            display: block;
+            /* ensure block for link */
         }
 
         .footer-cta:hover {
@@ -611,7 +706,7 @@
         }
 
 
-        /* --- MOBILE FRIENDLY INTEGRATION --- */
+        /* --- MOBILE & TABLET OPTIMIZATIONS --- */
 
         /* Tablet (768px - 1024px) */
         @media (max-width: 1024px) {
@@ -636,31 +731,37 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            nav {
+            nav.desktop-nav {
                 width: 70%;
-            }
-
-            .nav-pill {
-                width: 100%;
-                justify-content: space-between;
             }
         }
 
-        /* Mobile (Max 768px) - DISTINCT APP FEEL */
+        /* Mobile (Max 768px) */
         @media (max-width: 768px) {
+
+            nav.desktop-nav {
+                display: none;
+            }
+
+            /* Hide Pill Nav */
+            .mobile-header {
+                display: flex;
+            }
+
+            /* Show Mobile Header */
 
             /* Section Spacing */
             section {
-                padding: 64px 0;
+                padding: 80px 0;
             }
 
-            /* Layout Reset */
+            /* Grid Reset */
             .problem-grid,
             .about-grid,
             .testimonial-grid,
             .bento-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 24px;
             }
 
             .bento-card-small,
@@ -669,106 +770,14 @@
                 grid-column: span 12;
             }
 
-            /* App Dock Navigation */
-            nav {
-                width: 95%;
-                bottom: 16px;
-                top: auto !important;
-                /* Force bottom on mobile */
-                border-radius: 24px;
-            }
-
-            .nav-pill {
-                padding: 14px 20px;
-                background: rgba(10, 10, 10, 0.95);
-                justify-content: space-between;
-                backdrop-filter: blur(24px);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            }
-
-            .logo-pill {
-                display: none;
-            }
-
-            /* Hide text logo on dock */
-
-            /* Icons navigation */
-            .nav-links {
-                margin: 0;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                gap: 0;
-            }
-
-            .nav-links a {
-                padding: 0;
-                font-size: 11px;
-                font-weight: 600;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 6px;
-                color: #666;
-                transition: 0.3s;
-                letter-spacing: 0.5px;
-                width: 60px;
-                /* larger touch target */
-            }
-
-            /* Active/Hover state simulation */
-            .nav-links a:hover,
-            .nav-links a:active {
-                color: var(--gold-primary);
-                background: transparent;
-            }
-
-            .nav-links a::before {
-                font-family: 'remixicon';
-                font-size: 20px;
-                margin-bottom: 0;
-            }
-
-            /* Add Icons via CSS content */
-            .nav-links a[href="#about"]::before {
-                content: "\f1fd";
-                /* ri-information-line */
-            }
-
-            .nav-links a[href="#services"]::before {
-                content: "\f207";
-                /* ri-layout-masonry-line */
-            }
-
-            .nav-links a[href="#faq"]::before {
-                content: "\f4fa";
-                /* ri-question-line */
-            }
-
-            .nav-links a[href="#testimonials"]::before {
-                content: "\f2b2";
-                /* ri-star-smile-line */
-            }
-
-            /* Labels visible but stylized */
-            .nav-links a span {
-                display: block;
-            }
-
-            /* Hide Button from Dock to save space */
-            .cta-pill.nav-btn {
-                display: none;
-            }
-
-            /* Typography Scale - Mobile Optimized */
+            /* Typography Scale */
             .section-title {
                 font-size: 32px;
                 letter-spacing: -1px;
             }
 
             .hero h1 {
-                font-size: 48px;
+                font-size: 44px;
                 margin-bottom: 24px;
             }
 
@@ -778,21 +787,11 @@
                 padding: 0 10px;
             }
 
-            /* Hero CTA Position */
-            .hero .cta-pill {
-                width: 100%;
-                display: block;
-                padding: 20px !important;
-                font-size: 18px !important;
-            }
-
             /* Bento Cards Mobile */
             .bento-card {
                 padding: 24px;
                 min-height: auto;
-                border-radius: 16px;
-                background: #0F0F0F;
-                /* Slightly simpler bg for performance */
+                border: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .bento-card h3 {
@@ -816,9 +815,18 @@
                 margin-bottom: 40px;
             }
 
-            /* Remove floating elements that might block view */
-            .card-bg-glow {
-                opacity: 0.3;
+            /* Fix Centering / Margins */
+            .container {
+                padding: 0 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            body,
+            html {
+                width: 100%;
+                overflow-x: hidden;
+                position: relative;
             }
         }
     </style>
@@ -829,8 +837,8 @@
     <div class="noise-overlay"></div>
     <div class="cursor-trail" id="cursor"></div>
 
-    <!-- Floating Navbar -->
-    <nav>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
         <div class="nav-pill">
             <div class="logo-pill">U</div>
             <div class="nav-links">
@@ -839,9 +847,28 @@
                 <a href="#faq" class="nav-link">FAQs</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
             </div>
-            <button class="cta-pill nav-btn" onclick="lenis.scrollTo('#footer')">Book Call</button>
+            <button class="cta-pill" onclick="window.location.href='contact.html'">Book Call</button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Header -->
+    <header class="mobile-header">
+        <div class="mobile-logo">UNIIMIZE</div>
+        <div class="hamburger-btn" id="mobile-menu-btn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <a href="#about" class="mobile-menu-link">About</a>
+        <a href="#services" class="mobile-menu-link">Services</a>
+        <a href="#faq" class="mobile-menu-link">FAQs</a>
+        <a href="#testimonials" class="mobile-menu-link">Reviews</a>
+        <button class="cta-pill" onclick="window.location.href='contact.html'"
+            style="font-size: 18px; padding: 16px 32px; margin-top: 20px;">Book Your Call</button>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -857,7 +884,7 @@
                 coaching institutes, schools, and educators by owning their digital growth end-to-end.</p>
             <div>
                 <button class="cta-pill" style="padding: 16px 48px; font-size: 16px;"
-                    onclick="lenis.scrollTo('#footer')">Start Your Growth</button>
+                    onclick="window.location.href='contact.html'">Start Your Growth</button>
             </div>
         </div>
     </section>
@@ -1084,14 +1111,15 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="container">
-            <a href="mailto:hello@uniimize.com">
+            <a href="mailto:uniimize@gmail.com">
                 <h2 class="footer-cta" style="margin-bottom: 20px;">Let's Dominate <br> Your Market</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 60px;">UNIIMIZE helps education
-                    institutes increase admissions through structured growth systems.</p>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 60px;">uniimize@gmail.com</p>
             </a>
 
-            <div style="text-align: center; color: #444; font-size: 14px;">
-                &copy; 2024 UNIIMIZE. All rights reserved.
+            <div
+                style="text-align: center; color: #444; font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
+                <span>&copy; 2024 UNIIMIZE. All rights reserved.</span>
+                <span>unnimize.in</span>
             </div>
         </div>
     </footer>
@@ -1120,6 +1148,34 @@
         });
 
         gsap.registerPlugin(ScrollTrigger);
+
+        // Toggle Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+        let menuOpen = false;
+
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.add('active');
+                mobileBtn.children[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                mobileBtn.children[1].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                mobileMenu.classList.remove('active');
+                mobileBtn.children[0].style.transform = 'none';
+                mobileBtn.children[1].style.transform = 'none';
+            }
+        }
+
+        mobileBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+                const target = link.getAttribute('href');
+                lenis.scrollTo(target);
+            });
+        });
 
         // Hero Stagger
         gsap.from(".stagger-text", {
