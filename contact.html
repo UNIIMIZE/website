@@ -5,6 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | UNIIMIZE</title>
+    <meta name="description"
+        content="Get in touch with UNIIMIZE. Book a strategy call to scale your institute's admissions and revenue with our predictable growth systems.">
+    <meta name="keywords"
+        content="Contact UNIIMIZE, Book Strategy Call, Education Marketing Agency Contact, Institute Growth Consultation">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uniimize.in/contact.html">
+    <meta property="og:title" content="Contact Us | UNIIMIZE Growth">
+    <meta property="og:description"
+        content="Ready to stop guessing and start growing? Book a strategy call with UNIIMIZE today.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Contact Us | UNIIMIZE Growth">
+    <meta property="twitter:description"
+        content="Ready to stop guessing and start growing? Book a strategy call with UNIIMIZE today.">
 
     <!-- Favicon -->
     <link rel="icon"
@@ -109,7 +129,7 @@
 
         .logo-pill {
             background: #000;
-            color: #fff;
+            color: var(--gold-primary);
             padding: 10px 24px;
             border-radius: 40px;
             font-family: var(--font-heading);
@@ -294,6 +314,80 @@
                 padding: 24px;
             }
         }
+
+        /* Missing Nav Styles */
+        .cta-pill {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .cta-pill:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(197, 160, 40, 0.4);
+        }
+
+        /* Mobile Menu Overlay Styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050505;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            transform: translateY(-100%);
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .mobile-menu-overlay.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu-link {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .mobile-menu-link.active,
+        .mobile-menu-link:hover {
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .hamburger-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
     </style>
 </head>
 
@@ -301,64 +395,108 @@
 
     <div class="noise-overlay"></div>
 
-    <!-- Desktop Nav -->
+    <!-- Desktop Navigation -->
     <nav class="desktop-nav">
         <div class="nav-pill">
-            <a href="index.html" class="logo-pill">U</a>
+            <div class="logo-pill">U</div>
             <div class="nav-links">
-                <a href="index.html#about">About</a>
-                <a href="index.html#services">Services</a>
-                <a href="index.html#testimonials">Reviews</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#testimonials" class="nav-link">Reviews</a>
+                <a href="index.html#faq" class="nav-link">FAQs</a>
             </div>
+            <button class="cta-pill" onclick="window.location.href='contact.html'">Book Call</button>
         </div>
     </nav>
 
-    <!-- Mobile Header -->
+    <!-- Mobile Navigation Header -->
     <header class="mobile-header">
         <div class="mobile-logo">UNIIMIZE</div>
-        <a href="index.html" class="back-btn"><i class="ri-close-line"></i></a>
+        <div class="hamburger-btn" id="mobile-menu-btn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <a href="index.html#about" class="mobile-menu-link">About</a>
+        <a href="index.html#services" class="mobile-menu-link">Services</a>
+        <a href="index.html#faq" class="mobile-menu-link">FAQs</a>
+        <a href="index.html#testimonials" class="mobile-menu-link">Reviews</a>
+        <button class="cta-pill" onclick="window.location.href='contact.html'"
+            style="font-size: 18px; padding: 16px 32px; margin-top: 20px;">Book Your Call</button>
+    </div>
 
     <section class="contact-page">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
                     <h1>Let's Talk <br> <span class="gold-text">Growth.</span></h1>
-                    <p style="font-size: 18px; color: var(--text-muted); max-width: 400px;">Ready to stop guessing and
-                        start growing? Fill out the form or email us directly.</p>
+                    <p style="font-size: 18px; color: var(--text-muted); max-width: 400px; margin-bottom: 40px;">Ready
+                        to stop guessing and start growing? Fill out the form or email us directly.</p>
 
                     <div class="contact-details">
+                        <div class="contact-item">
+                            <h5>Visit Us</h5>
+                            <p>Bijli Bamba, Hapur Road Meerut (250003)</p>
+                        </div>
                         <div class="contact-item">
                             <h5>Email Us</h5>
                             <p>uniimize@gmail.com</p>
                         </div>
                         <div class="contact-item">
                             <h5>Website</h5>
-                            <p>unnimize.in</p>
+                            <p>uniimize.in</p>
                         </div>
+                    </div>
+
+                    <div style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px;">
+                        <span
+                            style="color: var(--gold-light); letter-spacing: 2px; text-transform: uppercase; font-size: 14px; font-weight: 600;">Why
+                            Partner WIth Us?</span>
+                        <ul style="margin-top: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li><i class="ri-check-line" style="color: var(--gold-primary); margin-right: 10px;"></i> No
+                                Long-Term Lock-in Contracts</li>
+                            <li><i class="ri-check-line" style="color: var(--gold-primary); margin-right: 10px;"></i>
+                                Transparent Weekly Reporting</li>
+                            <li><i class="ri-check-line" style="color: var(--gold-primary); margin-right: 10px;"></i> We
+                                Only Win When You Win</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="contact-form-box">
-                    <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you shortly.');">
+                    <form id="contactForm" onsubmit="sendMessage(event)">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-input" placeholder="Your Name" required>
+                            <input type="text" id="name" class="form-input" placeholder="Your Name" required>
                         </div>
+
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210" required>
+                        </div>
+
                         <div class="form-group">
                             <label>Institute Name</label>
-                            <input type="text" class="form-input" placeholder="Institute / School Name" required>
+                            <input type="text" id="institute" class="form-input" placeholder="Institute / School Name"
+                                required>
                         </div>
+
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" class="form-input" placeholder="you@example.com" required>
+                            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
                         </div>
+
                         <div class="form-group">
                             <label>Growth Goal</label>
-                            <textarea class="form-input"
+                            <textarea id="goal" class="form-input"
                                 placeholder="Tell us about your current challenges..."></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Book Strategy Call</button>
+
+                        <button type="submit" class="submit-btn" style="border-radius: 12px; color: #000;">Book Strategy
+                            Call</button>
                     </form>
                 </div>
             </div>
@@ -374,6 +512,91 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+    </script>
+
+    <!-- Message Relay Script -->
+    <script>
+        async function sendMessage(e) {
+            e.preventDefault();
+
+            // --- CONFIGURATION ---
+            // PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwx76LEFkvbJQGLSNdbyVy4VmZL3t_m8cjLPCSEDl-ipbuKDhMwfnQ5-N9f4VwpAH3f/exec";
+            // ---------------------
+
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            if (!SCRIPT_URL) {
+                alert("Please configure the Google Script URL in the code to enable messaging.");
+                return;
+            }
+
+            // Loading State
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+            btn.style.opacity = "0.7";
+
+            const data = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                institute: document.getElementById('institute').value,
+                email: document.getElementById('email').value,
+                goal: document.getElementById('goal').value
+            };
+
+            try {
+                // Send data to Google Script (which relays to Telegram)
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // 'no-cors' is required for Google Script triggers
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                // Success
+                btn.innerText = "Message Sent! 🚀";
+                btn.style.background = "#4CAF50"; // Green
+                btn.style.color = "#fff";
+                document.getElementById('contactForm').reset();
+
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.style.opacity = "1";
+                    btn.style.background = "var(--gold-gradient)";
+                    btn.style.color = "#000";
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Something went wrong. Please try again or email us directly.");
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.style.opacity = "1";
+            }
+        }
+    </script>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const menuOverlay = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        if (menuBtn && menuOverlay) {
+            menuBtn.addEventListener('click', () => {
+                menuOverlay.classList.toggle('active');
+            });
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuOverlay.classList.remove('active');
+                });
+            });
+        }
     </script>
 
 </body>
