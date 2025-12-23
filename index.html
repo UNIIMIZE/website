@@ -4,7 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIIMIZE | Growth Partner for Institutes</title>
+    <title>UNIIMIZE | Where Institutes Scale Admissions</title>
+    <meta name="description"
+        content="UNIIMIZE helps coaching institutes and schools increase admissions and dominate their digital presence through structured education growth systems.">
+    <meta name="keywords"
+        content="Student Admissions, Education Marketing, Institute Growth, Coaching Center Marketing, Lead Generation for Schools and Coaching Centers, UNIIMIZE">
+    <meta name="author" content="UNIIMIZE">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://uniimize.in">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uniimize.in/">
+    <meta property="og:title" content="UNIIMIZE | Where Institutes Scale Admissions">
+    <meta property="og:description"
+        content="UNIIMIZE helps coaching institutes and schools increase admissions and dominate their digital presence through structured education growth systems.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://uniimize.in/">
+    <meta property="twitter:title" content="UNIIMIZE | Where Institutes Scale Admissions">
+    <meta property="twitter:description"
+        content="UNIIMIZE helps coaching institutes and schools increase admissions and dominate their digital presence through structured education growth systems.">
+    <meta property="twitter:image"
+        content="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
     <!-- Favicon -->
     <link rel="icon"
@@ -829,6 +854,92 @@
                 position: relative;
             }
         }
+
+        /* Differentiation Section */
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .diff-card {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.6), rgba(10, 10, 10, 0.8));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diff-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .diff-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+        }
+
+        .diff-icon {
+            font-size: 28px;
+            color: var(--gold-light);
+        }
+
+        .diff-header h3 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .diff-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .diff-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+
+        .others-side p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .us-side p {
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .divider-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .diff-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .diff-card {
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 
@@ -936,6 +1047,97 @@
                         <h4>The Result?</h4>
                         <p class="text-muted" style="margin: 0;">Low visibility, inconsistent admissions, and stagnant
                             growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation Section (The Edge) -->
+    <section id="differentiation" class="diff-section">
+        <div class="container">
+            <span class="section-label">Why Us?</span>
+            <h2 class="section-title reveal-text">The <span class="gold-text">UNIIMIZE</span> Edge</h2>
+            <br><br>
+
+            <div class="diff-grid is-hidden">
+                <!-- 1. Admissions Support -->
+                <div class="diff-card">
+                    <div class="diff-header">
+                        <i class="ri-customer-service-2-line diff-icon"></i>
+                        <h3>Admissions Support</h3>
+                    </div>
+                    <div class="diff-content">
+                        <div class="others-side">
+                            <span class="diff-label">Generic Agencies:</span>
+                            <p>"Here are the leads, good luck."</p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="us-side">
+                            <span class="diff-label gold-text">UNIIMIZE:</span>
+                            <p><strong>We Call & Close.</strong> Our counselors personally call parents & students to
+                                convince them to enroll.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Data Power -->
+                <div class="diff-card">
+                    <div class="diff-header">
+                        <i class="ri-database-2-line diff-icon"></i>
+                        <h3>Data Intelligence</h3>
+                    </div>
+                    <div class="diff-content">
+                        <div class="others-side">
+                            <span class="diff-label">Generic Agencies:</span>
+                            <p>Blind targeting on Facebook/Google.</p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="us-side">
+                            <span class="diff-label gold-text">UNIIMIZE:</span>
+                            <p><strong>Proprietary Database.</strong> Access to a user consent database for precise
+                                market analysis & targeting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Lead Quality -->
+                <div class="diff-card">
+                    <div class="diff-header">
+                        <i class="ri-user-star-line diff-icon"></i>
+                        <h3>Lead Quality</h3>
+                    </div>
+                    <div class="diff-content">
+                        <div class="others-side">
+                            <span class="diff-label">Generic Agencies:</span>
+                            <p>Low-intent clicks & random inquiries.</p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="us-side">
+                            <span class="diff-label gold-text">UNIIMIZE:</span>
+                            <p><strong>High-Intent Social Leads.</strong> Qualified leads generated from engaging,
+                                result-oriented content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Pricing -->
+                <div class="diff-card">
+                    <div class="diff-header">
+                        <i class="ri-wallet-3-line diff-icon"></i>
+                        <h3>Pricing Model</h3>
+                    </div>
+                    <div class="diff-content">
+                        <div class="others-side">
+                            <span class="diff-label">Generic Agencies:</span>
+                            <p>Cheap (no results) or Overpriced.</p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="us-side">
+                            <span class="diff-label gold-text">UNIIMIZE:</span>
+                            <p><strong>Affordable Premium.</strong> Strategic pricing that fits budgets but delivers
+                                premium, tracked results.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1278,6 +1480,20 @@
             });
         });
 
+        // Differentiation Cards Stagger
+        gsap.utils.toArray('.diff-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: '.diff-grid',
+                    start: "top 80%",
+                },
+                y: 40,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.15,
+                ease: "power2.out"
+            });
+        });
     </script>
 </body>
 
