@@ -955,6 +955,238 @@
                 padding: 24px;
             }
         }
+
+        /* Updated Pricing CSS */
+        .pricing-section {
+            background: #050505;
+            position: relative;
+        }
+
+        .commission-banner {
+            background: rgba(197, 160, 40, 0.05);
+            border: 1px solid rgba(197, 160, 40, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .commission-item h4 {
+            color: var(--gold-light);
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .commission-item span {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .pricing-card {
+            background: rgba(15, 15, 15, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-10px);
+            background: rgba(20, 20, 20, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold-primary);
+            background: rgba(197, 160, 40, 0.05);
+            box-shadow: 0 0 30px rgba(197, 160, 40, 0.1);
+        }
+
+        .plan-badge {
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            width: fit-content;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-name {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .plan-price {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            font-family: var(--font-heading);
+            color: var(--gold-light);
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .plan-duration {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-inner-section {
+            margin-bottom: 30px;
+        }
+
+        .inner-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .inner-title i {
+            font-size: 16px;
+        }
+
+        .plan-feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .plan-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .plan-feature-item i {
+            color: var(--gold-light);
+            font-size: 16px;
+            margin-top: 1px;
+        }
+
+        .support-pill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .support-pill strong {
+            display: block;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .support-pill p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .report-frequency {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .report-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .report-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .pricing-footer-info {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .pricing-note-p {
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .pricing-disclaimer-p {
+            color: #555;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        @media (max-width: 1200px) {
+            .commission-banner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .commission-banner {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .pricing-card {
+                padding: 32px 24px;
+            }
+        }
     </style>
 </head>
 
@@ -974,6 +1206,7 @@
             <div class="nav-links">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
+                <a href="#pricing" class="nav-link">Plans</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
                 <a href="#faq" class="nav-link">FAQs</a>
             </div>
@@ -994,6 +1227,7 @@
     <div class="mobile-menu-overlay" id="mobile-menu">
         <a href="#about" class="mobile-menu-link">About</a>
         <a href="#services" class="mobile-menu-link">Services</a>
+        <a href="#pricing" class="mobile-menu-link">Plans</a>
         <a href="#faq" class="mobile-menu-link">FAQs</a>
         <a href="#testimonials" class="mobile-menu-link">Reviews</a>
         <button class="cta-pill" onclick="window.location.href='contact.html'"
@@ -1258,6 +1492,196 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <span class="section-label">Growth Partnership</span>
+            <h2 class="section-title reveal-text">Admission Growth <br><span class="gold-text">Plans</span></h2>
+            <br><br>
+
+            <!-- Commission Structure Banner -->
+            <div class="commission-banner reveal-text">
+                <div class="commission-item">
+                    <h4>₹8,000</h4>
+                    <span>2-Year Program</span>
+                </div>
+                <div class="commission-item">
+                    <h4>₹6,000</h4>
+                    <span>1-Year Program</span>
+                </div>
+                <div class="commission-item">
+                    <h4>₹2,000</h4>
+                    <span>Foundation Program</span>
+                </div>
+                <div class="commission-item" style="border: none;">
+                    <p
+                        style="font-size: 12px; color: var(--gold-light); font-weight: 700; line-height: 1.2; text-align: left; padding-left: 10px; border-left: 1px solid rgba(197, 160, 40, 0.3);">
+                        * Commission payable only <br> after confirmed admission.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Starter: Foundation Growth -->
+                <div class="pricing-card">
+                    <div class="plan-badge">Starter</div>
+                    <h3 class="plan-name">Foundation Launch</h3>
+                    <div class="plan-price">₹30,000</div>
+                    <p class="plan-duration">each month</p>
+                    <p class="plan-ideal">Ideal for: New or local institutes looking to establish digital inquiry
+                        systems</p>
+                    <!-- Features -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-list-check"></i> Key Features</div>
+                        <div class="plan-feature-list">
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Admission growth
+                                system activation</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Instagram & Google
+                                Maps optimization</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> WhatsApp-based
+                                inquiry capture</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Lead tracking &
+                                documentation</div>
+                        </div>
+                    </div>
+
+                    <!-- Calling Support -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-customer-service-2-line"></i> Calling Support</div>
+                        <div class="support-pill">
+                            <strong>Limited Volume</strong>
+                            <p>Controlled follow-ups for priority leads only.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reporting -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-pie-chart-line"></i> Reporting</div>
+                        <p class="report-frequency">Every 15 days</p>
+                        <div class="report-items">
+                            <span class="report-tag">Leads</span>
+                            <span class="report-tag">Calls</span>
+                            <span class="report-tag">Admissions</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-pill" onclick="window.location.href='contact.html'"
+                        style="width: 100%; margin-top: auto;">Secure Locality</button>
+                </div>
+
+                <!-- Growth: Admission Accelerator -->
+                <div class="pricing-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <h3 class="plan-name">Admission Growth</h3>
+                    <div class="plan-price">₹75,000</div>
+                    <p class="plan-duration">each month</p>
+                    <p class="plan-ideal">Ideal for: Institutes actively seeking higher admissions in the current cycle
+                    </p>
+
+                    <!-- Features -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-list-check"></i> Key Features</div>
+                        <div class="plan-feature-list">
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Everything in
+                                Foundation Launch</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Advanced local
+                                content & reels strategy</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Improved inquiry
+                                funnel optimization</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Lead qualification &
+                                conversion tracking</div>
+                        </div>
+                    </div>
+
+                    <!-- Calling Support -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-customer-service-2-line"></i> Calling Support</div>
+                        <div class="support-pill" style="border-color: rgba(197, 160, 40, 0.3);">
+                            <strong>High Volume</strong>
+                            <p>Regular follow-ups with structured conversion approach.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reporting -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-pie-chart-line"></i> Reporting</div>
+                        <p class="report-frequency">Every 10 days</p>
+                        <div class="report-items">
+                            <span class="report-tag">Leads</span>
+                            <span class="report-tag">Connections</span>
+                            <span class="report-tag">Ratios</span>
+                            <span class="report-tag">Insights</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-pill" onclick="window.location.href='contact.html'"
+                        style="width: 100%; margin-top: auto;">Start Scaling</button>
+                </div>
+
+                <!-- Dominance: Market Dominance Partner -->
+                <div class="pricing-card">
+                    <div class="plan-badge">Best Value</div>
+                    <h3 class="plan-name">Market Dominance</h3>
+                    <div class="plan-price">₹1,20,000</div>
+                    <p class="plan-duration">each month</p>
+                    <p class="plan-ideal">Ideal for: Established institutes targeting category leadership and maximum
+                        admissions</p>
+
+
+                    <!-- Features -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-list-check"></i> Key Features</div>
+                        <div class="plan-feature-list">
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Everything in
+                                Admission Growth</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Dedicated admission
+                                handling workflow</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Authority branding &
+                                trust positioning</div>
+                            <div class="plan-feature-item"><i class="ri-checkbox-circle-fill"></i> Competitor
+                                suppression system</div>
+                        </div>
+                    </div>
+
+                    <!-- Calling Support -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-customer-service-2-line"></i> Calling Support</div>
+                        <div class="support-pill">
+                            <strong>Unlimited</strong>
+                            <p>End-to-end inquiry handling with continuous follow-ups.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reporting -->
+                    <div class="card-inner-section">
+                        <div class="inner-title"><i class="ri-pie-chart-line"></i> Reporting</div>
+                        <p class="report-frequency">Weekly Detailed</p>
+                        <div class="report-items">
+                            <span class="report-tag">Source breakdown</span>
+                            <span class="report-tag">Revenue Impact</span>
+                            <span class="report-tag">Strategy</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-pill" onclick="window.location.href='contact.html'"
+                        style="width: 100%; margin-top: auto;">Claim Your Area</button>
+                </div>
+            </div>
+
+            <!-- Pricing Footer Info -->
+            <div class="pricing-footer-info">
+                <p class="pricing-note-p">
+                    <strong>Important:</strong> All plans include admission-focused execution, lead handling, and
+                    locality-level exclusivity. We partner for outcomes, not generic marketing.
+                </p>
+                <p class="pricing-disclaimer-p">
+                    We do not offer generic social media management or ad services. All engagement is strictly focused
+                    on measurable admission growth.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials -->
     <section id="testimonials">
         <div class="container">
@@ -1511,6 +1935,21 @@
                 duration: 0.8,
                 delay: i * 0.15,
                 ease: "power2.out"
+            });
+        });
+
+        // Pricing Cards Stagger
+        gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: '.pricing-grid',
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                delay: i * 0.2,
+                ease: "power3.out"
             });
         });
     </script>
