@@ -382,6 +382,11 @@ section {
     letter-spacing: -2px;
     margin-bottom: 30px;
     text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    /* Pop from background */
+    position: relative;
+    z-index: 10;
 }
 
 .hero p {

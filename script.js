@@ -72,109 +72,8 @@ if (cursor) {
 
 
 // --- GSAP ANIMATIONS ---
-
-// 1. Hero Stagger
-if (document.querySelector('.stagger-text')) {
-    gsap.from(".stagger-text", {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power4.out"
-    });
-}
-
-// 2. Hero Tags
-if (document.querySelector('.hero-tag')) {
-    gsap.from(".hero-tag", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        delay: 0.5,
-        ease: "power2.out"
-    });
-}
-
-// 3. Generic Reveal Text
-gsap.utils.toArray('.reveal-text').forEach(text => {
-    gsap.from(text, {
-        scrollTrigger: {
-            trigger: text,
-            start: "top 85%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out"
-    });
-});
-
-// 4. Bento Grid Cards
-gsap.utils.toArray('.bento-card').forEach((card, i) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        delay: i * 0.1,
-        ease: "power2.out"
-    });
-});
-
-// 5. Problem Items
-if (document.querySelector('.problem-list')) {
-    gsap.utils.toArray('.problem-item').forEach((item, i) => {
-        gsap.from(item, {
-            scrollTrigger: {
-                trigger: '.problem-list',
-                start: "top 80%",
-            },
-            x: -30,
-            opacity: 0,
-            duration: 0.6,
-            delay: i * 0.1,
-            ease: "power2.out"
-        });
-    });
-}
-
-// 6. Differentiation Cards
-if (document.querySelector('.diff-grid')) {
-    gsap.utils.toArray('.diff-card').forEach((card, i) => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: '.diff-grid',
-                start: "top 80%",
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            delay: i * 0.15,
-            ease: "power2.out"
-        });
-    });
-}
-
-// 7. Pricing Cards
-if (document.querySelector('.pricing-grid')) {
-    gsap.utils.toArray('.pricing-card').forEach((card, i) => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: '.pricing-grid',
-                start: "top 80%",
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            delay: i * 0.2,
-            ease: "power3.out"
-        });
-    });
-}
+// All animations are now consolidated in initAnimations() to ensure consistency across SPA navigation.
+initAnimations();
 
 
 // --- INTERACTIVITY ---
@@ -376,23 +275,104 @@ async function loadPage(url, pushState = true) {
 }
 
 function initAnimations() {
-    // Re-register ScrollTrigger and other GSAP animations
+    // 1. Kill all existing ScrollTriggers to prevent memory leaks and conflicts
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    gsap.killTweensOf('*'); // Kill all active tweens
+
+    // 2. Refresh ScrollTrigger to ensure fresh start
     ScrollTrigger.refresh();
 
-    // (Copy of all the GSAP setup from above functions - encapsulated)
-    // For cleaner code, we should refactor the GSAP calls above into this function
-    // But to minimize diffs, I'll just ensure ScrollTrigger is refreshed and text reveals are targeted again.
+    // 3. Hero Stagger
+    if (document.querySelector('.stagger-text')) {
+        gsap.fromTo(".stagger-text",
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", clearProps: "all" }
+        );
+    }
 
+    // 4. Hero Tags
+    if (document.querySelector('.hero-tag')) {
+        gsap.fromTo(".hero-tag",
+            { y: 10, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, delay: 0.1, stagger: 0.05, ease: "power2.out", clearProps: "all" }
+        );
+    }
+
+    // 5. Generic Reveal Text
     gsap.utils.toArray('.reveal-text').forEach(text => {
-        gsap.from(text, {
-            scrollTrigger: { trigger: text, start: "top 85%" },
-            y: 50, opacity: 0, duration: 1, ease: "power2.out"
-        });
+        gsap.fromTo(text,
+            { y: 20, opacity: 0 },
+            {
+                y: 0, opacity: 1, duration: 0.5, ease: "power2.out", clearProps: "all",
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 95%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
     });
 
-    // Re-run other specific animations if present
-    if (document.querySelector('.stagger-text')) {
-        gsap.from(".stagger-text", { y: 100, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power4.out" });
+    // 6. Bento Grid Cards
+    gsap.utils.toArray('.bento-card').forEach((card, i) => {
+        gsap.fromTo(card,
+            { y: 20, opacity: 0 },
+            {
+                y: 0, opacity: 1, duration: 0.5, delay: i * 0.05, ease: "power2.out", clearProps: "all",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 95%",
+                }
+            }
+        );
+    });
+
+    // 7. Problem Items
+    if (document.querySelector('.problem-list')) {
+        gsap.utils.toArray('.problem-item').forEach((item, i) => {
+            gsap.fromTo(item,
+                { x: -20, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 0.5, delay: i * 0.05, ease: "power2.out", clearProps: "all",
+                    scrollTrigger: {
+                        trigger: '.problem-list',
+                        start: "top 90%",
+                    }
+                }
+            );
+        });
+    }
+
+    // 8. Differentiation Cards
+    if (document.querySelector('.diff-grid')) {
+        gsap.utils.toArray('.diff-card').forEach((card, i) => {
+            gsap.fromTo(card,
+                { y: 20, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 0.5, delay: i * 0.1, ease: "power2.out", clearProps: "all",
+                    scrollTrigger: {
+                        trigger: '.diff-grid',
+                        start: "top 90%",
+                    }
+                }
+            );
+        });
+    }
+
+    // 9. Pricing Cards
+    if (document.querySelector('.pricing-grid')) {
+        gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+            gsap.fromTo(card,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 0.5, delay: i * 0.1, ease: "power3.out", clearProps: "all",
+                    scrollTrigger: {
+                        trigger: '.pricing-grid',
+                        start: "top 90%",
+                    }
+                }
+            );
+        });
     }
 }
 
