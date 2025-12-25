@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | UNIIMIZE</title>
+    <meta name="description" content="Insights, strategies, and guides for education marketing and institute growth.">
+    <link rel="icon" type="image/png" href="../U.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="cursor-trail" id="cursor"></div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <div class="nav-pill">
+            <a href="https://uniimize.in" class="logo-pill-link">
+                <div class="logo-pill">
+                    <img src="../U.png" alt="Uniimize Logo">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#about" class="nav-link">About</a>
+                <a href="../index.html#services" class="nav-link">Services</a>
+                <a href="../index.html#pricing" class="nav-link">Plans</a>
+                <a href="blog.html" class="nav-link" style="color: #fff;">Blog</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <button class="cta-pill" onclick="window.location.href='../contact.html'">Book Call</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Header -->
+    <header class="mobile-header">
+        <div class="mobile-logo">UNIIMIZE</div>
+        <div class="hamburger-btn" id="mobile-menu-btn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <a href="../index.html" class="mobile-menu-link">Home</a>
+        <a href="../index.html#about" class="mobile-menu-link">About</a>
+        <a href="../index.html#services" class="mobile-menu-link">Services</a>
+        <a href="blog.html" class="mobile-menu-link">Blog</a>
+        <button class="cta-pill" onclick="window.location.href='../contact.html'"
+            style="font-size: 18px; padding: 16px 32px; margin-top: 20px;">Book Your Call</button>
+    </div>
+
+    <div class="container">
+        <header class="blog-header">
+            <h1 class="reveal-text">BLOG</h1>
+            <p class="text-muted" style="max-width: 600px; margin: 24px auto 0;">Strategies, trends, and execution
+                guides to help your institute dominate the local market.</p>
+        </header>
+
+        <div class="blog-grid">
+            <!-- Post 1 -->
+            <article class="blog-card" onclick="window.location.href='data-driven-admissions.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Data" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Strategy</span>
+                    <h3>5 Data-Driven Strategies to Scale Admissions in 2025</h3>
+                    <p class="blog-excerpt">Stop guessing. Learn how to use student data and market insights to predict
+                        and increase your admission numbers.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-card" onclick="window.location.href='why-school-ads-fail.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Ads" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Marketing</span>
+                    <h3>Why Most School Ads Fail (And How to Fix Them)</h3>
+                    <p class="blog-excerpt">Burning money on Facebook Ads? Here is why generic creatives don't work for
+                        education and what you should do instead.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="blog-card" onclick="window.location.href='building-trust-parents.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Trust" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Branding</span>
+                    <h3>Building Trust with Parents: The Digital Way</h3>
+                    <p class="blog-excerpt">Modern parents research online before visiting. Here is how to build
+                        authority and trust before they even walk in.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="blog-card" onclick="window.location.href='art-of-follow-up.html'" style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Follow up" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Sales</span>
+                    <h3>The Art of the Follow-Up: Converting Inquiries</h3>
+                    <p class="blog-excerpt">Generating leads is easy. converting them is hard. Learn the follow-up
+                        cadence that doubles conversion rates.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="blog-card" onclick="window.location.href='instagram-reels-strategy.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Instagram" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Social Media</span>
+                    <h3>Instagram Reels for Coaching Centers: What Works?</h3>
+                    <p class="blog-excerpt">You don't need to dance. Here are 5 content ideas for education institutes
+                        that actually drive engagement.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="blog-card" onclick="window.location.href='google-maps-domination.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Maps" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Local SEO</span>
+                    <h3>How to Dominate Your Local Area on Google Maps</h3>
+                    <p class="blog-excerpt">Being #1 on Google Maps is the single most important factor for walk-ins.
+                        Here is how to optimize your profile.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 7 -->
+            <article class="blog-card" onclick="window.location.href='parent-psychology.html'" style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Psychology" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Psychology</span>
+                    <h3>The Psychology of Parents: Making the Choice</h3>
+                    <p class="blog-excerpt">Should you sell results or safety? Understanding the core emotional triggers
+                        of parents is key to higher fees.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 8 -->
+            <article class="blog-card" onclick="window.location.href='lead-qualification.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Leads" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Operations</span>
+                    <h3>Stop Wasting Money: Qualify Your Leads First</h3>
+                    <p class="blog-excerpt">Why 'more leads' is often a bad goal. How to filter for quality families who
+                        can afford your fees.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 9 -->
+            <article class="blog-card" onclick="window.location.href='branding-vs-marketing.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Brand" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Strategy</span>
+                    <h3>Branding vs. Marketing: Why You Need Both</h3>
+                    <p class="blog-excerpt">Marketing brings them to the door. Branding makes them stay. Learn the
+                        difference and how to balance them.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+            <!-- Post 10 -->
+            <article class="blog-card" onclick="window.location.href='edtech-marketing-trends.html'"
+                style="cursor: pointer;">
+                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Future" class="blog-thumb">
+                <div class="blog-card-content">
+                    <span class="blog-cat">Trends</span>
+                    <h3>The Future of Education Marketing: Trends to Watch</h3>
+                    <p class="blog-excerpt">From AI-driven counseling to hyper-personalization. Here is what the next 5
+                        years look like for institutes.</p>
+                    <div class="read-more-link">Read Article <i class="ri-arrow-right-line"></i></div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../U.png" alt="UNIIMIZE">
+                        <span class="logo-text">UNIIMIZE</span>
+                    </div>
+                    <p>Systematically increasing admissions and brand authority for premium educational institutes.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="../index.html#about">About Us</a>
+                        <a href="../index.html#services">Services</a>
+                        <a href="../index.html#pricing">Growth Plans</a>
+                        <a href="blog.html">Blog</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="../index.html#testimonials">Client Reviews</a>
+                        <a href="../contact.html">Book Strategy Call</a>
+                        <a href="mailto:uniimize@gmail.com">Support Email</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <div class="footer-links">
+                        <a href="../terms.html">Terms & Conditions</a>
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../disclaimer.html">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 UNIIMIZE. All rights reserved.
+                </div>
+                <div class="footer-bottom-links">
+                    <span>Built with Excellence</span>
+                    <a href="https://uniimize.in" style="color: inherit;">uniimize.in</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Main Script -->
+    <script src="../script.js"></script>
+
+</body>
+
+</html>
