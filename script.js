@@ -173,15 +173,29 @@ document.addEventListener('DOMContentLoaded', () => {
         q.addEventListener('click', () => {
             const answer = q.nextElementSibling;
             const icon = q.querySelector('i');
-            const isOpen = answer.style.height && answer.style.height !== '0px';
 
-            document.querySelectorAll('.faq-answer').forEach(a => a.style.height = 0);
-            document.querySelectorAll('.faq-question i').forEach(i => i.classList.replace('ri-subtract-line', 'ri-add-line'));
+            // PERFORMANCE FIX: Read layout properties BEFORE any writes
+            const isOpen = answer.classList.contains('active');
+            const targetHeight = isOpen ? 0 : answer.scrollHeight;
 
-            if (!isOpen) {
-                answer.style.height = answer.scrollHeight + 'px';
-                if (icon) icon.classList.replace('ri-add-line', 'ri-subtract-line');
-            }
+            // Batch all DOM writes together (no forced reflow)
+            requestAnimationFrame(() => {
+                // Close all others
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.style.height = '0';
+                    a.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question i').forEach(i => {
+                    i.classList.replace('ri-subtract-line', 'ri-add-line');
+                });
+
+                // Open current if it was closed
+                if (!isOpen) {
+                    answer.style.height = targetHeight + 'px';
+                    answer.classList.add('active');
+                    if (icon) icon.classList.replace('ri-add-line', 'ri-subtract-line');
+                }
+            });
         });
     });
 
