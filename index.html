@@ -846,7 +846,7 @@ function shareArticle(platform) {
     const productionDomain = 'https://uniimize.in';
 
     // Determine the relative path (simulated)
-    // If filename is empty (root), it's index.html
+    // If filename is empty (root), it's https://uniimize.in/
     let finalUrl = rawUrl;
 
     if (rawUrl.startsWith('file:') || rawUrl.includes('localhost') || rawUrl.includes('127.0.0.1')) {
