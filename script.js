@@ -11,37 +11,38 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 // --- MOBILE MENU FUNCTIONALITY ---
-const mobileBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+// --- MOBILE MENU FUNCTIONALITY ---
+// Variable to track state, but DOM elements must be queried dynamically
 let menuOpen = false;
 
 function toggleMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+
+    if (!mobileMenu || !mobileBtn) return;
+
     menuOpen = !menuOpen;
     if (menuOpen) {
         mobileMenu.classList.add('active');
-        if (mobileBtn) {
-            mobileBtn.children[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-            mobileBtn.children[1].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-        }
+        mobileBtn.children[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+        mobileBtn.children[1].style.transform = 'rotate(-45deg) translate(5px, -6px)';
     } else {
         mobileMenu.classList.remove('active');
-        if (mobileBtn) {
-            mobileBtn.children[0].style.transform = 'none';
-            mobileBtn.children[1].style.transform = 'none';
-        }
+        mobileBtn.children[0].style.transform = 'none';
+        mobileBtn.children[1].style.transform = 'none';
     }
 }
 
-if (mobileBtn) {
-    mobileBtn.addEventListener('click', toggleMenu);
+// Initial Listener (will be re-attached by reinitScripts)
+const initialBtn = document.getElementById('mobile-menu-btn');
+if (initialBtn) {
+    initialBtn.addEventListener('click', toggleMenu);
 }
 
-mobileLinks.forEach(link => {
+document.querySelectorAll('.mobile-menu-link').forEach(link => {
     link.addEventListener('click', () => {
-        toggleMenu();
+        toggleMenu(); // Close menu
         const target = link.getAttribute('href');
-        // Only scroll if target is on the same page and starts with #
         if (target.startsWith('#')) {
             lenis.scrollTo(target);
         }
@@ -97,8 +98,16 @@ document.querySelectorAll('.faq-question').forEach(q => {
 });
 
 // Contact Form Submission
+// Contact Form Submission
 function sendMessage(event) {
     event.preventDefault();
+
+    const submitBtn = document.querySelector('.submit-btn');
+    const originalText = submitBtn.innerText;
+
+    // Disable button and show loading state
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
 
     // Get form values
     const name = document.getElementById('name').value;
@@ -110,22 +119,54 @@ function sendMessage(event) {
     // Get plan if available
     let plan = "Not Selected";
     const planSelect = document.getElementById('plan');
-    if (planSelect) {
+    if (planSelect && planSelect.value) {
         plan = planSelect.value;
     }
 
-    // Format message for WhatsApp
-    const message = `*New Strategy Call Booking*%0A%0A` +
-        `*Name:* ${name}%0A` +
-        `*Phone:* ${phone}%0A` +
-        `*Institute:* ${institute}%0A` +
-        `*Email:* ${email}%0A` +
-        `*Interested Plan:* ${plan}%0A` +
-        `*Goal/Challenge:* ${goal}`;
+    // Google Apps Script URL (PLACEHOLDER)
+    // IMPORTANT: User needs to replace this URL after deploying the script
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwx76LEFkvbJQGLSNdbyVy4VmZL3t_m8cjLPCSEDl-ipbuKDhMwfnQ5-N9f4VwpAH3f/exec";
 
-    // Redirect to WhatsApp
-    const whatsappUrl = `https://wa.me/919690623696?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    // Prepare JSON data
+    const formData = {
+        name: name,
+        phone: phone,
+        institute: institute,
+        email: email,
+        goal: goal,
+        plan: plan
+    };
+
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important for Google Scripts
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            // Since mode is no-cors, we can't check response.ok or read JSON
+            // Assume success if request completes
+            alert("Thanks! We've received your request and will contact you shortly.");
+            document.getElementById('contactForm').reset();
+
+            // Reset Custom Dropdown Text
+            const customSelect = document.getElementById('custom-plan-select');
+            if (customSelect) {
+                customSelect.querySelector('.select-selected').innerText = "Select a Growth Plan";
+                customSelect.querySelector('.select-selected').classList.remove('has-value');
+                document.getElementById('plan').value = "";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Something went wrong. Please try again or email us directly at uniimize@gmail.com");
+        })
+        .finally(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        });
 }
 
 // --- ARTICLE SHARING ---
@@ -387,6 +428,17 @@ function reinitScripts() {
         newMobileBtn.addEventListener('click', toggleMenu);
         menuOpen = false; // reset state
     }
+
+    // Re-attach link listeners to close menu on click
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu(); // Close menu
+            const target = link.getAttribute('href');
+            if (target.startsWith('#')) {
+                lenis.scrollTo(target);
+            }
+        });
+    });
 
     // 3. Cursor
     const cursor = document.getElementById('cursor');
