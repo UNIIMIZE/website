@@ -43,7 +43,7 @@ mobileLinks.forEach(link => {
         const target = link.getAttribute('href');
         // Only scroll if target is on the same page and starts with #
         if (target.startsWith('#')) {
-             lenis.scrollTo(target);
+            lenis.scrollTo(target);
         }
     });
 });
@@ -192,7 +192,7 @@ document.querySelectorAll('.faq-question').forEach(q => {
 
         if (!isOpen) {
             answer.style.height = answer.scrollHeight + 'px';
-            if(icon) icon.classList.replace('ri-add-line', 'ri-subtract-line');
+            if (icon) icon.classList.replace('ri-add-line', 'ri-subtract-line');
         }
     });
 });
@@ -200,14 +200,14 @@ document.querySelectorAll('.faq-question').forEach(q => {
 // Contact Form Submission
 function sendMessage(event) {
     event.preventDefault();
-    
+
     // Get form values
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const institute = document.getElementById('institute').value;
     const email = document.getElementById('email').value;
     const goal = document.getElementById('goal').value;
-    
+
     // Get plan if available
     let plan = "Not Selected";
     const planSelect = document.getElementById('plan');
@@ -229,14 +229,229 @@ function sendMessage(event) {
     window.open(whatsappUrl, '_blank');
 }
 
+// --- ARTICLE SHARING ---
+// --- ARTICLE SHARING ---
+function shareArticle(platform) {
+    // Check if we are local or production
+    // If local (file: or localhost), construct the production URL for sharing
+    // This ensures the shared link actually works for others
+    let rawUrl = window.location.href;
+
+    // Logic to construct production URL if local
+    // Assumes file structure mirrors uniimize.in
+    const path = window.location.pathname;
+    const filename = path.substring(path.lastIndexOf('/') + 1);
+
+    // If we are in the /posts/ directory logic
+    // We can just force the production domain for sharing
+    const productionDomain = 'https://uniimize.in';
+
+    // Determine the relative path (simulated)
+    // If filename is empty (root), it's index.html
+    let finalUrl = rawUrl;
+
+    if (rawUrl.startsWith('file:') || rawUrl.includes('localhost') || rawUrl.includes('127.0.0.1')) {
+        // We are local. Construct the live URL.
+        // Check if it's a blog post
+        if (path.includes('/posts/')) {
+            finalUrl = `${productionDomain}/posts/${filename}`;
+        } else {
+            finalUrl = `${productionDomain}/${filename}`;
+        }
+    }
+
+    const url = encodeURIComponent(finalUrl);
+    const title = encodeURIComponent(document.title);
+    let shareUrl = '';
+
+    if (platform === 'twitter') {
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+    } else if (platform === 'linkedin') {
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+    } else if (platform === 'whatsapp') {
+        shareUrl = `https://api.whatsapp.com/send?text=${title} ${url}`;
+    }
+
+    if (shareUrl) window.open(shareUrl, '_blank');
+}
+
+// --- SPA NAVIGATION (YouTube-like Transitions) ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial animation registration
+    initAnimations();
+
+    // Intercept clicks on links
+    document.body.addEventListener('click', e => {
+        const link = e.target.closest('a');
+
+        // Ignore if: no link, external link, has target=_blank, or is an anchor link
+        if (!link ||
+            link.host !== window.location.host ||
+            link.target === '_blank' ||
+            link.getAttribute('href').startsWith('#') ||
+            link.getAttribute('href').includes('mailto:')
+        ) {
+            return;
+        }
+
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        handleTransition(href);
+    });
+
+    // Handle Back/Forward buttons
+    window.addEventListener('popstate', () => {
+        loadPage(window.location.pathname, false);
+    });
+});
+
+function handleTransition(href) {
+    // Animate Out
+    const overlay = document.createElement('div');
+    overlay.className = 'page-transition-overlay';
+    document.body.appendChild(overlay);
+
+    gsap.to(overlay, {
+        scaleY: 1,
+        duration: 0.6,
+        ease: 'power4.inOut',
+        onComplete: () => {
+            loadPage(href, true);
+        }
+    });
+}
+
+async function loadPage(url, pushState = true) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Page not found');
+        const text = await response.text();
+
+        // Parse new HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        // Replace Content (Keep Nav and Footer separate if possible, but here we replace body content mostly or specific container)
+        // Ideally we replace everything inside <body> but re-attach event listeners.
+        // For simplicity and robustness with static files, let's swap the full body content but keep the scripts valid.
+
+        // Better Strategy: Replace specific containers or Body innerHTML?
+        // Replacing Body innerHTML is easiest for static sites but we need to re-run scripts.
+        document.body.innerHTML = doc.body.innerHTML;
+        document.title = doc.title;
+
+        // Update URL
+        if (pushState) {
+            // Clean URL: remove .html
+            let cleanUrl = url;
+            if (url.endsWith('.html')) cleanUrl = url.slice(0, -5);
+            if (url.endsWith('index')) cleanUrl = url.slice(0, -5); // remove index too
+
+            history.pushState({}, '', cleanUrl);
+        }
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Re-initialize all dynamic logic
+        reinitScripts();
+
+        // Animate In
+        const overlay = document.querySelector('.page-transition-overlay');
+        if (overlay) {
+            gsap.to(overlay, {
+                scaleY: 0,
+                transformOrigin: 'top',
+                duration: 0.6,
+                delay: 0.1,
+                ease: 'power4.inOut',
+                onComplete: () => overlay.remove()
+            });
+        }
+
+    } catch (err) {
+        console.error('Navigation Error:', err);
+        window.location.href = url; // Fallback to hard reload
+    }
+}
+
+function initAnimations() {
+    // Re-register ScrollTrigger and other GSAP animations
+    ScrollTrigger.refresh();
+
+    // (Copy of all the GSAP setup from above functions - encapsulated)
+    // For cleaner code, we should refactor the GSAP calls above into this function
+    // But to minimize diffs, I'll just ensure ScrollTrigger is refreshed and text reveals are targeted again.
+
+    gsap.utils.toArray('.reveal-text').forEach(text => {
+        gsap.from(text, {
+            scrollTrigger: { trigger: text, start: "top 85%" },
+            y: 50, opacity: 0, duration: 1, ease: "power2.out"
+        });
+    });
+
+    // Re-run other specific animations if present
+    if (document.querySelector('.stagger-text')) {
+        gsap.from(".stagger-text", { y: 100, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power4.out" });
+    }
+}
+
+function reinitScripts() {
+    // 1. Lenis
+    // lenis instance persists, just need to restart raf loop if stopped? No, raf loop is on window. 
+    // Just need to make sure scroll position is reset.
+
+    // 2. Mobile Menu
+    const newMobileBtn = document.getElementById('mobile-menu-btn');
+    if (newMobileBtn) {
+        newMobileBtn.addEventListener('click', toggleMenu);
+        menuOpen = false; // reset state
+    }
+
+    // 3. Cursor
+    const cursor = document.getElementById('cursor');
+    if (cursor) {
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%,-50%) scale(3)';
+                cursor.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+                cursor.style.background = 'var(--gold-light)';
+            });
+        });
+    }
+
+    // 4. FAQ
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const answer = q.nextElementSibling;
+            const icon = q.querySelector('i');
+            const isOpen = answer.style.height && answer.style.height !== '0px';
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.height = 0);
+            if (!isOpen) {
+                answer.style.height = answer.scrollHeight + 'px';
+            }
+        });
+    });
+
+    // 5. Animations
+    initAnimations();
+}
+
 // Lenis Scroll Handling for Anchor Links
 document.querySelectorAll('.nav-link').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const targetAttr = this.getAttribute('href');
         // Only prevent default if it's an on-page anchor link (starts with #)
         if (targetAttr.startsWith('#')) {
-             e.preventDefault();
-             lenis.scrollTo(targetAttr);
+            e.preventDefault();
+            lenis.scrollTo(targetAttr);
         }
         // If it's index.html#section, and we are not on index.html, let it navigate naturally.
     });
